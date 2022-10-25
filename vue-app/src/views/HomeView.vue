@@ -1,20 +1,18 @@
 <template>
   <div class="home container">
     <div class="">
-      <config-list-com></config-list-com>
+      <config-com></config-com>
     </div>
   </div>
 </template>
 
 <script>
-import ConfigListCom from '@/components/ConfigListCom.vue'
+import ConfigCom from '@/components/ConfigCom.vue'
 // @ is an alias to /src
 
 export default {
+  components: { ConfigCom },
   name: 'HomeView',
-  components: {
-    ConfigListCom
-  }
 }
 </script>
 <style lang="scss" scoped>

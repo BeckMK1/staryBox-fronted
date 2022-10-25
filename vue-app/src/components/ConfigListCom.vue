@@ -11,17 +11,18 @@
         <p>Rediger</p>
     </div>
     </div>
-    <ul class="pageList" v-for="item in listData" :key="item.pageId">
+    <ul class="pageList">
+        <div v-for="item in listData" :key="item.pageId">
         <li class="" v-if="item.pageId == 1">
             <div class="listItem">
                 <div class="listItem__info col-6">
-                    <p>{{item.pageName}}</p>
+                    <p>{{item.linkname}}</p>
                     <p>{{item.filename}}</p>
                     <p>{{item.updated}}</p>
                 </div>
                 <div class="listItem__edit col-6">
                     <p>{{item.pageId}}</p>
-                    <button><i class="fa-solid fa-pen"></i></button>
+                    <button @click="$emit('goToEdit', item.pageId)"><i class="fa-solid fa-pen"></i></button>
                 </div>
             </div>
         </li>
@@ -29,13 +30,13 @@
                 <li v-if="item.pageId == 2">
                     <div class="listItem subItem">
                         <div class="listItem__info col-6">
-                            <p>{{item.pageName}}</p>
+                            <p>{{item.linkname}}</p>
                             <p>{{item.filename}}</p>
                             <p>{{item.updated}}</p>
                         </div>
                         <div class="listItem__edit col-6">
                             <p>{{item.pageId}}</p>
-                            <button><i class="fa-solid fa-pen"></i></button>
+                            <button @click="$emit('goToEdit', item.pageId)"><i class="fa-solid fa-pen"></i></button>
                         </div>
                     </div>
                 </li>
@@ -43,19 +44,19 @@
                     <li>
                         <div class="listItem subItem">
                             <div class="listItem__info col-6">
-                                <p>{{item.pageName}}</p>
+                                <p>{{item.linkname}}</p>
                                 <p>{{item.filename}}</p>
                                 <p>{{item.updated}}</p>
                             </div>
                             <div class="listItem__edit col-6">
                                 <p>{{item.pageId}}</p>
-                                <button><i class="fa-solid fa-pen"></i></button>
+                                <button @click="$emit('goToEdit', item.pageId)"><i class="fa-solid fa-pen"></i></button>
                             </div>
                         </div>
                     </li>
                 </ul>
             </ul>
-
+        </div>
     </ul>
   </div>
 </template>
@@ -84,68 +85,10 @@ methods:{
         console.log(error)
     }
     }
-}
+},
 }
 </script>
 
 <style lang="scss" scoped>
-.listInfo{
-    display: flex;
-    justify-content: space-between;
-    div{
-        justify-content: space-between;
-        display: flex;  
-        padding-left: 40px;
-    }
-    div:nth-child(2){
-        gap:8px
-    }
-}
-ul{
-    margin:0
-}
-li{
-    list-style-type:none
-}
-.pageList{
-    padding-left: 0;
-}
-.listItem{
-    border:solid black 2px;
-    display: flex;
-    justify-content: space-between;
-&__info{
-    display: flex;
-    justify-content: space-between;
-    &:nth-child(1){
-        padding-left: 40px;
-    }
-}
-&__edit{
-    display: flex;
-    justify-content: flex-end;
-    gap:28px;
-    align-items: center;
-    p{
-        margin:0;
-    }
-    button{
-        background: none;
-        border:none;
-        outline:none;
-        padding:none;
-        height: fit-content;
-        i{
-            background-color: black;
-            color:white;
-            padding:6px;
-            border-radius: 8px;
-            
-        }
-    }
-}
-}
-.subItem{
-    border-top: none;
-}
+@import "../assets/styles/configList.scss";
 </style>

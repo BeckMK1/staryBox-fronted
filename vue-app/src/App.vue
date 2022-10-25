@@ -7,6 +7,11 @@
 </template>
 
 <style lang="scss">
+button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
