@@ -121,6 +121,46 @@
         }
     }
 }
+.inputEditor{
+.inputEditorContainer{
+    height: 50px;
+    .editorWrapper{
+        input{
+            width: 100%;
+            margin-bottom: 4px;
+        }
+    }
+}
+.linkEditorContainer{
+    height: 150px;
+}
+p{
+margin-top: 8px;
+margin-bottom: 4px;
+}
+.preview{
+    width: 500px;
+    height: 300px;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+}
+.checkboxContainer{
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+    input{
+        width: 25px !important;
+    }
+    label{
+    width: fit-content;
+    margin-right: 8px;
+    margin-bottom: 0;
+    }
+}
+}
 .preview{
     border: 2px solid black;
     min-height: 300px;

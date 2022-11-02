@@ -23,7 +23,7 @@
       bottom: 0;
       width: 100vw;
       height: 50px;
-      background-color: rgba($color: black, $alpha: 0.3);
+      background-color: rgb(204, 202, 202);
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -35,7 +35,7 @@
           font-weight: bold;
           background-color: black;
           width: fit-content;
-          margin-right: 8px;
+          margin-right: 30px;
       }
   }
   </style>
