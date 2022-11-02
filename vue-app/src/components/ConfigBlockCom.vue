@@ -11,6 +11,7 @@
             <p>Rediger</p>
         </div>
     </div>
+    <div v-if="isLoading == true" class="loader"></div>
     <ul class="pageList" v-for="(items, index) in chunkList" :key="index" v-show="index == this.currentPage">
         <li v-for="item in items" :key="item.blockId" class="listItem"  >
             <div class="listItem__info col-6">
@@ -40,7 +41,8 @@ export default {
         return{
             listData:null,
             chunkList:[],
-            currentPage:0
+            currentPage:0,
+            isLoading:true
         }
     },
     props:{
@@ -74,6 +76,7 @@ async getListData(){
         response.data.sort((a,b) => (a.pageId - b.pageId))
         this.listData = response.data
         this.splitChunk()
+        this.isLoading = false
     })
     }catch(error){
         console.log(error)
@@ -115,8 +118,34 @@ async getListData(){
         cursor: pointer;
         user-select: none;
         padding: 4px 8px;
+        border-radius: 50%;
+        transition: 200ms ease;
+    }
+    span:hover{
+        background-color: black;
+        color: white;
+    border-radius: 50%;
+    transition: 200ms ease;
+    }
+    button{
+        margin: 0 8px;
+        background-color: black;
+        color: white;
+        border: transparent solid 1px;
+        border-radius: 50%;
+    border-radius: 50%; 
+    padding: 4px 8px;
+    transition: 200ms ease;
+    &:hover{
+        background-color: white;
+        color: black;
+        border-color: black;
+        border-radius: 50%;
+        transition: 200ms ease;
+    }
     }
 }
+
 .selectedPage{
     background: black;
     padding: 4px 8px;

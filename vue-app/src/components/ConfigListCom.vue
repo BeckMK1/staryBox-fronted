@@ -11,6 +11,7 @@
         <p>Rediger</p>
     </div>
     </div>
+    <div v-if="isLoading == true" class="loader"></div>
     <ul class="pageList">
         <div v-for="item in listData" :key="item.pageId">
         <li class="" v-if="item.pageId == 1">
@@ -67,7 +68,8 @@ export default {
 name:"ConfigListCom",
 data(){
     return{
-        listData:[]
+        listData:[],
+        isLoading:true
     }
 },
 mounted(){
@@ -79,6 +81,7 @@ methods:{
     axios.get('http://dev-api.guestbox.dk/cms/pages/1').then((response)=>{
         response.data.sort((a,b) => (a.pageId - b.pageId))
         this.listData = response.data
+        this.isLoading = false
     })
 
     }catch(error){
