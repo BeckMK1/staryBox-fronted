@@ -1,7 +1,6 @@
 <template>
   <div class="container transitionContainer">
-    <config-new-page-com></config-new-page-com>
-    <config-block-meta></config-block-meta>
+
        <button @click="goToBlock=null" class="backBtn" v-if="goToBlock != null"><i class="fa-solid fa-arrow-left-long"></i></button>
     <transition>
         <config-list-com @goToEdit="getData" v-if="goToBlock == null"></config-list-com>
@@ -14,11 +13,9 @@
 
 <script>
 import ConfigBlockCom from './ConfigBlockCom.vue'
-import ConfigBlockMeta from './ConfigBlockMeta.vue'
 import ConfigListCom from './ConfigListCom.vue'
-import ConfigNewPageCom from './ConfigNewPageCom.vue'
 export default {
-  components: { ConfigListCom, ConfigBlockCom, ConfigNewPageCom, ConfigBlockMeta },
+  components: { ConfigListCom, ConfigBlockCom, },
   data(){
     return{
         goToBlock:null

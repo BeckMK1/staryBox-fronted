@@ -1,0 +1,128 @@
+.editorContainer{
+    border: solid black 2px;
+    padding: 50px 25px;
+    position: relative;
+    height: 300px;
+    width: 500px;
+    .langContainer{
+        position: absolute;
+        top: 0px;
+        transform: translateY(-100%);
+        display: flex;
+        background-color: white;
+        .lang{
+            padding: 8px;
+            position: relative;
+            height: 35px;
+            width: 35px;
+            border-left: 2px solid black;
+            overflow: hidden;
+            margin-right: -3px;
+            &::after,&::before{
+                position: absolute;
+                content: '';
+                width: calc(100% - 2px);
+                left: 0px;
+                z-index: -1;
+
+            }
+            &::before{
+                height: 37%;
+                top: 0px;
+                border: 2px solid black;
+                border-width: 2px 2px 0px 0px;
+                transform: skew(25deg);
+                transform-origin: right bottom;
+
+            }
+            &::after{
+                height: calc(72% - 2px);
+                bottom: 0px;
+                border: 2px solid black;
+                border-width: 0px 2px 2px 0px;
+                border-color: transparent black transparent transparent;
+                border-bottom: solid 2px black;
+            }
+        }
+        .langActive{
+            &::after,&::before{
+                background-color: rgb(207, 207, 207);    
+                border-bottom: solid 2px rgb(207, 207, 207);
+            }
+            &::after{
+                border-bottom: transparent;
+            }
+        }
+    }
+    .editorWrapper{
+        position: absolute;
+        right: 50%;
+        bottom: 50%;
+        transform: translate(50%, 50%);
+        width: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        label{
+            margin-bottom: 8px;
+            font-size:12px;
+            font-weight:bold ;
+        }
+        .editor{
+            border: solid black 2px;
+            height: 200px;
+            width: 400px;
+            resize: none;
+            outline: none;
+        }
+        ol {
+            font-family: monospace;
+            white-space: pre; 
+            li{
+                text-align: start;
+              }
+              li::marker {
+                font-size: 10px;
+                display: inline;
+                color: grey;
+              }
+          }
+          .htmlEditor {
+            display: inline-flex;
+            gap: 10px;
+            font-family: monospace;
+            line-height: 21px;
+            border-radius: 2px;
+            padding: 20px 10px;
+
+          
+          textarea {
+            line-height: 21px;
+            overflow-y: hidden;
+            overflow-x: scroll;
+            padding: 0;
+            border: 0;
+            color: black;
+            height: 200px;
+            width: 400px;
+            outline: none;
+            resize: none;
+            border: solid black 2px;
+            position: relative;
+            left: -40px;
+
+          }
+          .lineNumbers {
+            position: relative;
+            width: 20px;
+            text-align: right;
+            left: -40px;
+          }
+        }
+    }
+}
+.preview{
+    border: 2px solid black;
+    min-height: 300px;
+    min-width: 400px;
+}

@@ -44,7 +44,7 @@ methods:{
 .metaContainer{
     border:black solid 2px;
     padding:12px 50px;
-    margin-bottom:32px;
+    margin-bottom:75px;
     position: relative;
     .metaInput{
         display: flex;

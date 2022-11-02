@@ -1,6 +1,7 @@
 <template>
-<transition>
   <div>
+    <transition>
+    <div v-if="isEdit == false">
     <div class="listInfo">
         <div class="col-6">
             <p>Navn</p>
@@ -20,7 +21,7 @@
                 <p>{{item.folderId}}</p>
             </div>
             <div class="listItem__edit col-6">
-                <button><i class="fa-solid fa-pen"></i></button>
+                <button @click="isEdit = true"><i class="fa-solid fa-pen"></i></button>
             </div>
         </li>
     </ul>
@@ -31,18 +32,24 @@
     </div>
   </div>
 </transition>
+<config-editor-com v-if="isEdit == true"></config-editor-com>
+</div>
+
 </template>
 
 <script>
 import axios from 'axios'
+import ConfigEditorCom from './ConfigEditorCom.vue'
 export default {
+  components: { ConfigEditorCom },
     name:"ConfigBlockCom",
     data(){
         return{
             listData:null,
             chunkList:[],
             currentPage:0,
-            isLoading:true
+            isLoading:true,
+            isEdit:false
         }
     },
     props:{

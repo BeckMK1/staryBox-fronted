@@ -32,4 +32,12 @@ nav {
     }
   }
 }
+.lineNumbers span {
+            counter-increment: linenumber;
+            &::before {
+                content: counter(linenumber);
+                display: block;
+                color: black;
+              }
+          }
 </style>
