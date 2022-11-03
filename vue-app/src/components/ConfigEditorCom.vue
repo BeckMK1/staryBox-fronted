@@ -1,12 +1,7 @@
 <template>
     <div>
       <div class="editorContainer">
-        <config-block-meta></config-block-meta>
-      <text-editor-sub-com @sendTextDa="getTextDa" @sendTextEn="getTextEn" v-if="isTextEditor == true" ></text-editor-sub-com>
-      <html-editor-sub-com-vue @sendHtmlDa="getHtmlDa" @sendHtmlEn="getHtmlEn" v-if="isHtmlEditor == true" ></html-editor-sub-com-vue>
-      <image-editor-com @sendImageDa="getImageDa" @sendImageEn="getImageEn" v-if="isImageEditor == true"></image-editor-com>
-      <link-editor-com v-if="isLinkEditor == true"></link-editor-com>
-      <text-string-editor v-if="isTextStringEditor == true"></text-string-editor>
+        <text-title-link-block-com @sendSave="getSave" ></text-title-link-block-com>
     </div>
       <transition>
         <save-editor-sub-com v-if="showSave == true"></save-editor-sub-com>
@@ -15,65 +10,22 @@
     </template>
     
     <script>
-    import ConfigBlockMeta from './ConfigBlockMeta.vue'
     import SaveEditorSubCom from './SubCompontents/SaveEditorSubCom.vue'
-    import TextEditorSubCom from './SubCompontents/TextEditorSubCom.vue'
-    import HtmlEditorSubComVue from './SubCompontents/HtmlEditorSubCom.vue'
-import ImageEditorCom from './SubCompontents/editors/imageEditorCom.vue'
-import LinkEditorCom from './SubCompontents/editors/LinkEditorCom.vue'
-import TextStringEditor from './SubCompontents/editors/TextStringEditor.vue'
+    import TextTitleLinkBlockCom from './SubCompontents/blocks/TextTitleLinkBlockCom.vue';
     export default {
-      components: { TextEditorSubCom, SaveEditorSubCom, ConfigBlockMeta, HtmlEditorSubComVue, ImageEditorCom, LinkEditorCom, TextStringEditor },
+      components: { SaveEditorSubCom, TextTitleLinkBlockCom },
       name: 'ConfigEditorCom',
       data(){
         return{
-          TextData:{
-            textDa:'',
-            textEn:'',
-          },
-          htmlData:{
-            htmlDa:'',
-            textEn:''
-          },
-          imageData:{
-            imageDa:'',
-            imageEn:''
-          },
           showSave:false,
-          isTextEditor:false,
-          isHtmlEditor:false,
-          isImageEditor:false,
-          isLinkEditor:false,
-          isTextStringEditor:true
         }
       },
       methods:{
-        getTextDa(data){
-        this.TextData.textDa = data
-        this.showSave=true
-        },
-        getTextEn(data){
-        this.TextData.textDa = data
-        this.showSave=true
-        },
-        getHtmlDa(data){
-        this.htmlData.htmlDa = data
-        this.showSave=true
-        },
-        getHtmlEn(data){
-        this.htmlData.htmlEn = data
-        this.showSave=true
-        },
-        getImageDa(data){
-        this.imageData.imageDa = data
-        this.showSave=true
-        },
-        getImageEn(data){
-        this.imageData.imageEn = data
-        this.showSave=true
+        getSave(data){
+          this.showSave = data
         }
       }
-    }
+  }
     </script>
     
     <!-- Add "scoped" attribute to limit CSS to this component only -->

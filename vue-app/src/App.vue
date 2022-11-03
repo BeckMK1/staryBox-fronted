@@ -39,4 +39,16 @@ nav {
                 color: black;
               }
           }
+.blockPreview{
+    a{
+      padding: 12px 16px;
+      background-color: black;
+      border-radius: 20px;
+      color:white;
+      width: fit-content;
+      text-decoration: none;
+      font-weight: 600;
+      
+    }
+}
 </style>

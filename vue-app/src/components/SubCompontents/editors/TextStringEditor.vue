@@ -14,7 +14,7 @@
         <input v-model="textDa" type="url" placeholder="url tekst">
         <div class="checkboxContainer">
             <label for="">åben i ny fane</label>
-            <select name="" id="" v-model="typeEn">
+            <select name="" id="" v-model="typeDa">
             <option v-for="(type, index) in types" :Key="index" :value="type">{{type}}</option>
             </select>
         </div>
@@ -31,10 +31,9 @@
       </div>
       </div>
       <p>preview</p>
-      <div class="preview" v-show="showDa == true" >
-        
+      <div class="preview perviewDa" v-show="showDa == true" >
       </div>
-      <div class="preview" v-show="showEn == true">
+      <div class="preview perviewEn" v-show="showEn == true">
         
       </div>
     </div>
@@ -55,25 +54,41 @@
           ],
           textDa:'',
           typeDa:'',
+          resualtDa:'',
           textEn:'',
           typeEn:'',
+          resualtEn:'',
           showDa:true,
           showEn:false
       }
   },
   watch:{
-    imageDa(newText, oldText){
+    resualtDa(newText, oldText){
           if(newText != oldText){
-              this.$emit('sendImageDa', this.imageDa)
+              this.$emit('sendTextStringDa', this.resualtDa)
               console.log('sent')
           }
       },
-      imageEn(newText, oldText){
+      resualtEn(newText, oldText){
           if(newText != oldText){
-              this.$emit('sendImageEn', this.imageEn)
+              this.$emit('sendTextStringEn', this.resualtEn)
               console.log('sent')
           }
       },
+      typeDa(newData, oldData){
+        const previewHtml = document.querySelector(".perviewDa");
+        if(newData != oldData){
+          this.resualtDa = `<${this.typeDa}>${this.textDa}</${this.typeDa}>`
+         previewHtml.innerHTML = this.resualtDa 
+        }
+      },
+      typeEn(newData, oldData){
+        const previewHtml = document.querySelector(".perviewEn");
+        if(newData != oldData){
+          this.resualtEn = `<${this.typeEn}>${this.textEn}</${this.typeEn}>`
+         previewHtml.innerHTML = this.resualtEn 
+        }
+      }
 
   },
   methods:{

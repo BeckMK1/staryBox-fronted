@@ -45,29 +45,64 @@
           linkDa:'',
           linkTextDa:'',
           fanDa:false,
+          resaultDa:'',
           linkEn:'',
           linkTextEn:'',
           fanEn:false,
+          resaultEn:'',
           showDa:true,
           showEn:false
       }
   },
   watch:{
-    imageDa(newText, oldText){
+    resaultDa(newText, oldText){
           if(newText != oldText){
-              this.$emit('sendImageDa', this.imageDa)
+              this.$emit('sendLinkDa', this.resaultDa)
               console.log('sent')
           }
       },
-      imageEn(newText, oldText){
+      resaultEn(newText, oldText){
           if(newText != oldText){
-              this.$emit('sendImageEn', this.imageEn)
+              this.$emit('sendLinkEn', this.resaultEn)
               console.log('sent')
           }
       },
+      //create da a tag
+      linkTextDa(newData, oldData){
+        if(newData != oldData){
+          this.resaultDa = `<a href="${this.linkDa}" :target="${this.fanDa == true ? '_blank' : ''}">${this.linkTextDa}</a>`
+        }
+      },
+      linkDa(newData, oldData){
+        if(newData != oldData){
+          this.resaultDa = `<a href="${this.linkDa}" :target="${this.fanDa == true ? '_blank' : ''}">${this.linkTextDa}</a>`
+        }
+      },
+      fanDa(newData, oldData){
+        if(newData != oldData){
+          this.resaultDa = `<a href="${this.linkDa}" :target="${this.fanDa == true ? '_blank' : ''}">${this.linkTextDa}</a>`
+        }
+      },
+      //create eng a tag
+      linkTextEn(newData, oldData){
+        if(newData != oldData){
+          this.resaultEn = `<a href="${this.linkEn}" :target="${this.fanEn == true ? '_blank' : ''}">${this.linkTextEn}</a>`
+        }
+      },
+      linkEn(newData, oldData){
+        if(newData != oldData){
+          this.resaultEn = `<a href="${this.linkEn}" :target="${this.fanEn == true ? '_blank' : ''}">${this.linkTextEn}</a>`
+        }
+      },
+      fanEn(newData, oldData){
+        if(newData != oldData){
+          this.resaultDa = `<a href="${this.linkEn}" :target="${this.fanEn == true ? '_blank' : ''}">${this.linkTextEn}</a>`
+        }
+      }
 
   },
   methods:{
+
     }
   }
   </script>

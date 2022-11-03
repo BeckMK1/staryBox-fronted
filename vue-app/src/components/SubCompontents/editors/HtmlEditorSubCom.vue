@@ -82,5 +82,5 @@
   </script>
   
   <style lang="scss" scoped>
-  @import "../../assets/styles/editorStyles.scss";
+  @import "../../../assets/styles/editorStyles.scss";
   </style>
