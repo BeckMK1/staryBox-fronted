@@ -1,14 +1,26 @@
 <template>
   <div class="blockContainer">
-    <div class="editorContainer">
-    <text-string-editor @sendTextStringDa="getTitleDa"></text-string-editor>
-    <text-editor-sub-com @sendTextDa="getTextDa"></text-editor-sub-com>
-    <link-editor-com @sendLinkDa="getLinkDa"></link-editor-com>
-    </div> 
-    <div class="blockPreview">
+    <div class="langContainer">
+        <span v-for="(lang, index) in langs" :key="{index}" @click="isSaved(lang)"  :class="selectedLang == lang ? 'langSelected' : ''">{{lang}}</span>
+    </div>
+    <div class="editorContainer" v-if="selectedLang == 'da'">
+    <text-string-editor @sendTextString="getTitle"></text-string-editor>
+    <text-editor-sub-com @sendText="getText"></text-editor-sub-com>
+    <link-editor-com @sendLink="getLink"></link-editor-com>
+    </div>
+    <div class="editorContainer" v-if="selectedLang == 'en'">
+    <text-string-editor @sendTextString="getTitle"></text-string-editor>
+    <text-editor-sub-com @sendText="getText"></text-editor-sub-com>
+    <link-editor-com @sendLink="getLink"></link-editor-com>
+    </div>  
+    <div class="blockPreview" >
         <div class="title"></div>
         <p class="text"></p>
         <div class="link"></div>
+    </div>
+    <div class="warnMessage" v-if="isWran == true">
+        du skal gemme før du ændre sprog
+        <i class="fa-solid fa-arrow-down"></i>
     </div>
   </div>
 </template>
@@ -19,37 +31,65 @@ import TextEditorSubCom from '../editors/TextEditorSubCom.vue'
 import TextStringEditor from '../editors/TextStringEditor.vue'
 
 export default {
-  components: { TextEditorSubCom, TextStringEditor, LinkEditorCom },
+  components: { TextEditorSubCom, TextStringEditor, LinkEditorCom,  },
+  props:{
+    dataSaved:{
+        type:Boolean,
+        default:false
+    }
+  },
 data(){
     return{
-        titleDa:"",
-        textDa:"",
-        linkDa:"",
-        titleEn:"",
-        textEn:"",
-        linkEn:"",
-        saveData:true
+        title:"",
+        text:"",
+        link:"",
+        blockUpdated:false,
+        saveData:true,
+        isWran:false,
+        selectedLang: "da",
+        langs:[
+            'da',
+            'en'
+        ]
     }
 },
+watch:{
+    dataSaved(newData){
+    if(newData == true){
+        this.blockUpdated = false
+        console.log('saved')
+    }
+   } 
+},
 methods:{
-    getTitleDa(data){
+    getTitle(data){
         const preview = document.querySelector(".blockPreview .title");
-        this.titleDa = data
-        preview.innerHTML = this.titleDa
+        this.title = data
+        preview.innerHTML = this.title
+        this.blockUpdated = true
         this.$emit('sendSave', this.saveData)
     },
-    getTextDa(data){
+    getText(data){
         const preview = document.querySelector(".blockPreview p");
-        this.textDa = data
-        preview.innerHTML = this.textDa
+        this.text = data
+        preview.innerHTML = this.text
+        this.blockUpdated = true
         this.$emit('sendSave', this.saveData)
     },
-    getLinkDa(data){
+    getLink(data){
         const preview = document.querySelector(".blockPreview .link");
-        this.linkDa = data
-        preview.innerHTML = this.linkDa
+        this.link = data
+        preview.innerHTML = this.link
+        this.blockUpdated = true
         this.$emit('sendSave', this.saveData)
     },
+    isSaved(data){
+        if(this.dataSaved == true || this.blockUpdated == false ){
+            this.selectedLang = data
+        }else{
+            this.isWran = true
+        }
+    }
     }
 }
 </script>

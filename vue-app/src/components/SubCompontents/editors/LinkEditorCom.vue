@@ -1,39 +1,19 @@
 <template>
     <div class="inputEditor">
       <div class="editorContainer inputEditorContainer linkEditorContainer">
-          <div class="langContainer">
-          <div :class="showDa == true ? 'langActive' : ''" class="lang" @click="showDa = true, showEn = false">
-              <span>da</span>
-          </div>
-          <div :class="showEn == true ? 'langActive' : ''" class="lang" @click="showDa = false, showEn = true">
-              <span>en</span>
-          </div>
-      </div>
-      <div v-show="showDa == true" class="editorWrapper">
+      <div class="editorWrapper">
         <label for="">Link</label>
-        <input v-model="linkDa" type="url" placeholder="url">
-        <input v-model="linkTextDa" type="url" placeholder="url tekst">
+        <input v-model="link" type="url" placeholder="url">
+        <input v-model="linkText" type="url" placeholder="url tekst">
         <div class="checkboxContainer">
             <label for="">åben i ny fane</label>
-            <input type="checkbox" @click="fanDa = !fanDa">
-        </div>
-      </div>
-      <div v-show="showEn == true" class="editorWrapper">
-        <label for="">Link</label>
-        <input v-model="linkEn" type="url" placeholder="url">
-        <input v-model="linkTextEn" type="url" placeholder="url tekst">
-        <div class="checkboxContainer">
-            <label for="">åben i ny fane</label>
-            <input type="checkbox" @click="fanEn = !fanEn">
+            <input type="checkbox" @click="fan = !fan">
         </div>
       </div>
       </div>
       <p>preview</p>
-      <div class="preview" v-show="showDa == true" >
-        <a :href="linkDa" :target="fanDa == true ? '_blank' : ''">{{linkTextDa}}</a>
-      </div>
-      <div class="preview" v-show="showEn == true">
-        <a :href="linkEn" :target="fanDa == true ? '_blank' : ''">{{linkTextEn}}</a>
+      <div class="preview">
+        <a :href="link" :target="fan == true ? '_blank' : ''">{{linkText}}</a>
       </div>
     </div>
   </template>
@@ -42,63 +22,36 @@
   export default {
   data(){
       return{
-          linkDa:'',
-          linkTextDa:'',
-          fanDa:false,
-          resaultDa:'',
-          linkEn:'',
-          linkTextEn:'',
-          fanEn:false,
-          resaultEn:'',
-          showDa:true,
-          showEn:false
+          link:'',
+          linkText:'',
+          fan:false,
+          resault:'',
+
       }
   },
   watch:{
-    resaultDa(newText, oldText){
+    resault(newText, oldText){
           if(newText != oldText){
-              this.$emit('sendLinkDa', this.resaultDa)
+              this.$emit('sendLink', this.resault)
               console.log('sent')
           }
       },
-      resaultEn(newText, oldText){
-          if(newText != oldText){
-              this.$emit('sendLinkEn', this.resaultEn)
-              console.log('sent')
-          }
-      },
-      //create da a tag
-      linkTextDa(newData, oldData){
+      //creating the a tag
+      linkText(newData, oldData){
         if(newData != oldData){
-          this.resaultDa = `<a href="${this.linkDa}" :target="${this.fanDa == true ? '_blank' : ''}">${this.linkTextDa}</a>`
+          this.resault = `<a href="${this.link}" :target="${this.fan == true ? '_blank' : ''}">${this.linkText}</a>`
         }
       },
-      linkDa(newData, oldData){
+      link(newData, oldData){
         if(newData != oldData){
-          this.resaultDa = `<a href="${this.linkDa}" :target="${this.fanDa == true ? '_blank' : ''}">${this.linkTextDa}</a>`
+          this.resault = `<a href="${this.link}" :target="${this.fan == true ? '_blank' : ''}">${this.linkText}</a>`
         }
       },
-      fanDa(newData, oldData){
+      fan(newData, oldData){
         if(newData != oldData){
-          this.resaultDa = `<a href="${this.linkDa}" :target="${this.fanDa == true ? '_blank' : ''}">${this.linkTextDa}</a>`
+          this.resault = `<a href="${this.link}" :target="${this.fan == true ? '_blank' : ''}">${this.linkText}</a>`
         }
       },
-      //create eng a tag
-      linkTextEn(newData, oldData){
-        if(newData != oldData){
-          this.resaultEn = `<a href="${this.linkEn}" :target="${this.fanEn == true ? '_blank' : ''}">${this.linkTextEn}</a>`
-        }
-      },
-      linkEn(newData, oldData){
-        if(newData != oldData){
-          this.resaultEn = `<a href="${this.linkEn}" :target="${this.fanEn == true ? '_blank' : ''}">${this.linkTextEn}</a>`
-        }
-      },
-      fanEn(newData, oldData){
-        if(newData != oldData){
-          this.resaultDa = `<a href="${this.linkEn}" :target="${this.fanEn == true ? '_blank' : ''}">${this.linkTextEn}</a>`
-        }
-      }
 
   },
   methods:{

@@ -1,21 +1,9 @@
 <template>
     <div>
       <div class="editorContainer">
-          <div class="langContainer">
-          <div :class="showDa == true ? 'langActive' : ''" class="lang" @click="showDa = true, showEn = false">
-              <span>da</span>
-          </div>
-          <div :class="showEn == true ? 'langActive' : ''" class="lang" @click="showDa = false, showEn = true">
-              <span>en</span>
-          </div>
-      </div>
-      <div v-if="showDa == true" class="editorWrapper">
+      <div class="editorWrapper">
       <label for="">Tekst </label>
-      <textarea v-model="textDa" class="editor" cols="30" rows="10"></textarea>
-      </div>
-      <div v-if="showEn == true" class="editorWrapper">
-      <label for="">Tekst </label>
-      <textarea v-model="textEn" class="editor" cols="30" rows="10"></textarea>
+      <textarea v-model="text" class="editor" cols="30" rows="10"></textarea>
       </div>
       </div>
     </div>
@@ -25,22 +13,13 @@
   export default {
   data(){
       return{
-              textDa:'',
-              textEn:'',
-          showDa:true,
-          showEn:false
+              text:'',
       }
   },
   watch:{
-      textDa(newText, oldText){
+      text(newText, oldText){
           if(newText != oldText){
-              this.$emit('sendTextDa', this.textDa)
-              console.log('sent')
-          }
-      },
-      textEn(newText, oldText){
-          if(newText != oldText){
-              this.$emit('sendTextEn', this.textEn)
+              this.$emit('sendText', this.text)
               console.log('sent')
           }
       },

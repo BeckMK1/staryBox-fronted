@@ -5,4 +5,36 @@
 .blockPreview{
     border:2px solid black;
     height: 300px;
+    margin-top: 32px;
+}
+.langContainer{
+    span{
+        padding: 8px;
+    }
+    .langSelected{
+        background-color: black;
+        color: white
+    }
+}
+.warnMessage{
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 12px;
+    i{
+        animation: pointAni 2s infinite;
+        margin-right: 15px;
+
+    }
+}
+@keyframes pointAni {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(10px);
+    }
 }

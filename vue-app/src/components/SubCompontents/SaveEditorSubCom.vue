@@ -9,9 +9,14 @@
   <script>
   export default {
   name:'SaveEditorSubC',
+  data(){
+    return{
+        save:true
+    }
+  },
   methods:{
       sendSave(){
-          this.$emit('sendSave')
+          this.$emit('sendSave', this.save)
       }
   }
   }

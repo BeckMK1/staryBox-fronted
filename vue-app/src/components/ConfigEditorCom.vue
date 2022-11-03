@@ -1,10 +1,10 @@
 <template>
     <div>
       <div class="editorContainer">
-        <text-title-link-block-com @sendSave="getSave" ></text-title-link-block-com>
+        <text-title-link-block-com :dataSaved="save" @sendSave="getSave" ></text-title-link-block-com>
     </div>
       <transition>
-        <save-editor-sub-com v-if="showSave == true"></save-editor-sub-com>
+        <save-editor-sub-com @sendSave="setSave" v-if="showSave == true"></save-editor-sub-com>
       </transition>
     </div>
     </template>
@@ -18,11 +18,16 @@
       data(){
         return{
           showSave:false,
+          save:false
         }
       },
       methods:{
         getSave(data){
           this.showSave = data
+        },
+        setSave(data){
+          this.save = data
+          this.showSave = false
         }
       }
   }
