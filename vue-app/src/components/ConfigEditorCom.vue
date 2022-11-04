@@ -1,7 +1,8 @@
 <template>
     <div>
+      <config-block-meta></config-block-meta>
       <div class="editorContainer">
-        <text-title-link-block-com :dataSaved="save" @sendSave="getSave" ></text-title-link-block-com>
+       <text-image-block-com :dataSaved="save" @sendSave="getSave"></text-image-block-com>
     </div>
       <transition>
         <save-editor-sub-com @sendSave="setSave" v-if="showSave == true"></save-editor-sub-com>
@@ -10,10 +11,11 @@
     </template>
     
     <script>
+import TextImageBlockCom from './SubCompontents/blocks/TextImageBlockCom.vue'
     import SaveEditorSubCom from './SubCompontents/SaveEditorSubCom.vue'
-    import TextTitleLinkBlockCom from './SubCompontents/blocks/TextTitleLinkBlockCom.vue';
+    import ConfigBlockMeta from './ConfigBlockMeta.vue'
     export default {
-      components: { SaveEditorSubCom, TextTitleLinkBlockCom },
+      components: { SaveEditorSubCom, TextImageBlockCom, ConfigBlockMeta  },
       name: 'ConfigEditorCom',
       data(){
         return{
@@ -28,6 +30,9 @@
         setSave(data){
           this.save = data
           this.showSave = false
+          setTimeout(() => {
+            this.save = false
+          }, 200);
         }
       }
   }

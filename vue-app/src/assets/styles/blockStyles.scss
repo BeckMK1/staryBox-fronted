@@ -24,6 +24,11 @@
     flex-direction: column;
     align-items: flex-end;
     margin-bottom: 12px;
+    span{
+        background-color: black;
+    padding: 8px;
+    color: white;
+    }
     i{
         animation: pointAni 2s infinite;
         margin-right: 15px;
@@ -37,4 +42,8 @@
     to{
         transform: translateY(10px);
     }
+}
+.textImage{
+    display: flex;
+    gap: 12px;
 }

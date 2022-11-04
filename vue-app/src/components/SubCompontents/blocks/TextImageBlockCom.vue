@@ -3,33 +3,28 @@
     <div class="langContainer">
         <span v-for="(lang, index) in langs" :key="{index}" @click="isSaved(lang)"  :class="selectedLang == lang ? 'langSelected' : ''">{{lang}}</span>
     </div>
-
     <div class="editorContainer" v-for="(lang, index) in langs" :key="index" v-show="selectedLang == lang">
-        <text-string-editor @sendTextString="getTitle"></text-string-editor>
-        <text-editor-sub-com @sendText="getText"></text-editor-sub-com>
-        <link-editor-com @sendLink="getLink"></link-editor-com>
+    <image-editor-com @sendImage="getImage"></image-editor-com>
+    <text-editor-sub-com @sendText="getText"></text-editor-sub-com>
     </div>
-
-    <div class="blockPreview" :class="'blockPreview'+lang" v-for="(lang, index) in langs" :key="index" v-show="selectedLang == lang"  >
-        <div class="title" v-html="title"></div>
+    <div class="blockPreview textImage" :class="'blockPreview'+lang" v-for="(lang, index) in langs" :key="index" v-show="selectedLang == lang"  >
+        <img :src="image" alt="">
         <p class="text" >{{text}}</p>
-        <div class="link" v-html="link"></div>
     </div>
-
     <div class="warnMessage" v-if="isWran == true">
-        <span>du skal gemme før du ændre sprog</span> 
+       <span>du skal gemme før du ændre sprog</span> 
         <i class="fa-solid fa-arrow-down"></i>
     </div>
   </div>
 </template>
 
 <script>
-import LinkEditorCom from '../editors/LinkEditorCom.vue'
+import ImageEditorCom from '../editors/imageEditorCom.vue'
 import TextEditorSubCom from '../editors/TextEditorSubCom.vue'
-import TextStringEditor from '../editors/TextStringEditor.vue'
+
 
 export default {
-  components: { TextEditorSubCom, TextStringEditor, LinkEditorCom,  },
+  components: { TextEditorSubCom, ImageEditorCom,   },
   props:{
     dataSaved:{
         type:Boolean,
@@ -38,9 +33,8 @@ export default {
   },
 data(){
     return{
-        title:"",
         text:"",
-        link:"",
+        image:"",
         blockUpdated:false,
         saveData:true,
         isWran:false,
@@ -58,23 +52,17 @@ watch:{
         console.log('saved')
         this.title = ''
         this.text=''
-        this.link=''
     }
-   }, 
+   } 
 },
 methods:{
-    getTitle(data){
-        this.title = data
+    getImage(data){
+        this.image = data
         this.blockUpdated = true
         this.$emit('sendSave', this.saveData)
     },
     getText(data){
         this.text = data
-        this.blockUpdated = true
-        this.$emit('sendSave', this.saveData)
-    },
-    getLink(data){
-        this.link = data
         this.blockUpdated = true
         this.$emit('sendSave', this.saveData)
     },

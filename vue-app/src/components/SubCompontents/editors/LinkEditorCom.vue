@@ -11,10 +11,6 @@
         </div>
       </div>
       </div>
-      <p>preview</p>
-      <div class="preview">
-        <a :href="link" :target="fan == true ? '_blank' : ''">{{linkText}}</a>
-      </div>
     </div>
   </template>
   
